@@ -2167,25 +2167,25 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$imag
 ;
 ;
 ;
-const STAGE_W = 660;
+/** Геометрия сцены */ const STAGE_W = 660;
 const STAGE_H = 660;
 const CX = Math.round(STAGE_W / 2);
 const CY = Math.round(STAGE_H * 0.52);
-const RINGS = [
+/** Радиусы колец */ const RINGS = [
     320,
     270,
     220,
     175,
     135
 ];
-const GRAD_LINE = 'bg-gradient-to-r from-[#0D70DF] to-[#E63637]';
+/** Градиенты */ const GRAD_LINE = 'bg-gradient-to-r from-[#0D70DF] to-[#E63637]';
 const GRAD_TEXT = 'text-transparent bg-clip-text bg-gradient-to-r from-[#0D70DF] to-[#E63637]';
 const GradientBadge = ({ title })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
         className: `text-[12px] font-semibold px-3 py-[6px] rounded-[8px] whitespace-nowrap text-white ${GRAD_LINE}`,
         children: title
     }, void 0, false, {
         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-        lineNumber: 17,
+        lineNumber: 20,
         columnNumber: 3
     }, this);
 const OrbitTrain = ({ r, startDeg, period, title, delay = 0 })=>{
@@ -2237,7 +2237,7 @@ const OrbitTrain = ({ r, startDeg, period, title, delay = 0 })=>{
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 62,
+                                lineNumber: 76,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2250,7 +2250,7 @@ const OrbitTrain = ({ r, startDeg, period, title, delay = 0 })=>{
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 63,
+                                lineNumber: 78,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2262,38 +2262,38 @@ const OrbitTrain = ({ r, startDeg, period, title, delay = 0 })=>{
                                     title: title
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 89,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 72,
+                                lineNumber: 88,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                        lineNumber: 48,
+                        lineNumber: 61,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                    lineNumber: 47,
+                    lineNumber: 59,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                lineNumber: 46,
+                lineNumber: 57,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-            lineNumber: 38,
+            lineNumber: 48,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-        lineNumber: 33,
+        lineNumber: 42,
         columnNumber: 5
     }, this);
 };
@@ -2342,7 +2342,7 @@ const CATEGORIES = [
 function FeaturesOrbitExact() {
     const [active, setActive] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('desktop');
     const cat = CATEGORIES.find((c)=>c.id === active);
-    // оставляем твои стартовые углы/периоды — добавил только задержку для «стаггера»
+    // стартовые углы/периоды + лёгкий «stagger» через delay
     const trains = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>[
             {
                 title: 'СИСТЕМА АНАЛИТИКИ',
@@ -2359,7 +2359,7 @@ function FeaturesOrbitExact() {
                 delay: 0.2
             },
             {
-                title: 'СОВРЕМЕННЫЙ ДОКУМЕНТООБОРОТОР',
+                title: 'СОВРЕМЕННЫЙ ДОКУМЕНТООБОРОТ',
                 r: RINGS[2],
                 start: 310,
                 period: 22,
@@ -2391,7 +2391,7 @@ function FeaturesOrbitExact() {
       `
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                lineNumber: 146,
+                lineNumber: 170,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2407,14 +2407,14 @@ function FeaturesOrbitExact() {
                                         className: "fa-solid fa-star"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                        lineNumber: 156,
+                                        lineNumber: 180,
                                         columnNumber: 13
                                     }, this),
                                     " Переходите на новый уровень"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 155,
+                                lineNumber: 179,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2426,13 +2426,13 @@ function FeaturesOrbitExact() {
                                         children: "ПЛАТФОРМЫ"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                        lineNumber: 160,
+                                        lineNumber: 184,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 158,
+                                lineNumber: 182,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2443,20 +2443,20 @@ function FeaturesOrbitExact() {
                                         className: "hidden sm:block"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 188,
                                         columnNumber: 13
                                     }, this),
                                     "УПРАВЛЕНИЯ И ПРОДАЖ ПУТЁВОК"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 162,
+                                lineNumber: 186,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                        lineNumber: 154,
+                        lineNumber: 178,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2465,86 +2465,82 @@ function FeaturesOrbitExact() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "relative",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "   relative mx-auto   transform-gpu   scale-[0.82] xs:scale-[0.9] sm:scale-[0.95] md:scale-100   origin-center   ",
+                                    className: "   relative mx-auto transform-gpu   scale-[0.9] sm:scale-[0.95] md:scale-100   origin-center   ",
                                     style: {
                                         width: STAGE_W,
                                         height: STAGE_H
                                     },
                                     children: [
-                                        active === 'desktop' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: `0 0 ${STAGE_W} ${STAGE_H}`,
+                                            className: "absolute inset-0 w-full h-full pointer-events-none",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                    viewBox: `0 0 ${STAGE_W} ${STAGE_H}`,
-                                                    className: "absolute inset-0 w-full h-full pointer-events-none",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
-                                                                id: "ringGrad",
-                                                                x1: "0",
-                                                                x2: "1",
-                                                                y1: "0",
-                                                                y2: "1",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                                                        offset: "0%",
-                                                                        stopColor: "#0D70DF"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                                        lineNumber: 189,
-                                                                        columnNumber: 25
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                                                        offset: "100%",
-                                                                        stopColor: "#E63637"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                                        lineNumber: 190,
-                                                                        columnNumber: 25
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                                        id: "ringGrad",
+                                                        x1: "0",
+                                                        x2: "1",
+                                                        y1: "0",
+                                                        y2: "1",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "0%",
+                                                                stopColor: "#0D70DF"
+                                                            }, void 0, false, {
                                                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                                lineNumber: 188,
-                                                                columnNumber: 23
+                                                                lineNumber: 211,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "100%",
+                                                                stopColor: "#E63637"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
+                                                                lineNumber: 212,
+                                                                columnNumber: 21
                                                             }, this)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                            lineNumber: 187,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        RINGS.map((r, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                                                cx: CX,
-                                                                cy: CY,
-                                                                r: r,
-                                                                fill: "none",
-                                                                stroke: "url(#ringGrad)",
-                                                                strokeWidth: 3 - i * 0.2,
-                                                                strokeDasharray: i < 2 ? '12 16' : i < 4 ? '10 14' : '8 12',
-                                                                strokeOpacity: 0.22 - i * 0.02
-                                                            }, r, false, {
-                                                                fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                                lineNumber: 194,
-                                                                columnNumber: 23
-                                                            }, this))
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                    lineNumber: 183,
-                                                    columnNumber: 19
-                                                }, this),
-                                                trains.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrbitTrain, {
-                                                        r: t.r,
-                                                        startDeg: t.start,
-                                                        period: t.period,
-                                                        title: t.title,
-                                                        delay: t.delay
-                                                    }, i, false, {
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                        lineNumber: 209,
-                                                        columnNumber: 21
+                                                        lineNumber: 210,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
+                                                    lineNumber: 209,
+                                                    columnNumber: 17
+                                                }, this),
+                                                RINGS.map((r, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                        cx: CX,
+                                                        cy: CY,
+                                                        r: r,
+                                                        fill: "none",
+                                                        stroke: "url(#ringGrad)",
+                                                        strokeWidth: 3 - i * 0.2,
+                                                        strokeDasharray: i < 2 ? '12 16' : i < 4 ? '10 14' : '8 12',
+                                                        strokeOpacity: 0.22 - i * 0.02
+                                                    }, r, false, {
+                                                        fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
+                                                        lineNumber: 216,
+                                                        columnNumber: 19
                                                     }, this))
                                             ]
-                                        }, void 0, true),
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
+                                            lineNumber: 205,
+                                            columnNumber: 15
+                                        }, this),
+                                        trains.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrbitTrain, {
+                                                r: t.r,
+                                                startDeg: t.start,
+                                                period: t.period,
+                                                title: t.title,
+                                                delay: t.delay
+                                            }, i, false, {
+                                                fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
+                                                lineNumber: 231,
+                                                columnNumber: 17
+                                            }, this)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute",
                                             style: {
@@ -2557,26 +2553,26 @@ function FeaturesOrbitExact() {
                                                 alt: "Front tablet",
                                                 width: 900,
                                                 height: 900,
-                                                className: "w-[480px] sm:w-[520px] lg:w-[560px] h-auto drop-shadow-2xl"
+                                                className: "w-[500px] sm:w-[540px] lg:w-[580px] h-auto drop-shadow-2xl"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                lineNumber: 226,
+                                                lineNumber: 246,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 222,
+                                            lineNumber: 242,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                    lineNumber: 172,
+                                    lineNumber: 196,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 171,
+                                lineNumber: 195,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2589,7 +2585,7 @@ function FeaturesOrbitExact() {
                                             "aria-hidden": true
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 241,
+                                            lineNumber: 261,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2597,7 +2593,7 @@ function FeaturesOrbitExact() {
                                             children: cat.label
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 246,
+                                            lineNumber: 265,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2610,12 +2606,12 @@ function FeaturesOrbitExact() {
                                                     children: p
                                                 }, i, false, {
                                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                    lineNumber: 252,
+                                                    lineNumber: 271,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 250,
+                                            lineNumber: 269,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2625,7 +2621,7 @@ function FeaturesOrbitExact() {
                                                     className: `block w-24 h-[2px] ${GRAD_LINE}`
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                    lineNumber: 263,
+                                                    lineNumber: 282,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2634,13 +2630,13 @@ function FeaturesOrbitExact() {
                                                     children: "УЗНАТЬ БОЛЬШЕ"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                    lineNumber: 264,
+                                                    lineNumber: 283,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 262,
+                                            lineNumber: 281,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2657,41 +2653,41 @@ function FeaturesOrbitExact() {
                                                     children: c.label
                                                 }, c.id, false, {
                                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                                    lineNumber: 274,
+                                                    lineNumber: 293,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                            lineNumber: 272,
+                                            lineNumber: 291,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                    lineNumber: 239,
+                                    lineNumber: 259,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                                lineNumber: 238,
+                                lineNumber: 258,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                        lineNumber: 169,
+                        lineNumber: 193,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-                lineNumber: 152,
+                lineNumber: 176,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/components/FeaturesOrbitSection.tsx",
-        lineNumber: 145,
+        lineNumber: 168,
         columnNumber: 5
     }, this);
 }
@@ -5120,86 +5116,74 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$imag
 ;
 const clamp = (v, a = 0, b = 1)=>Math.max(a, Math.min(b, v));
 const lerp = (a, b, t)=>a + (b - a) * t;
-// простой ease (smoothstep)
 const ease = (t)=>t * t * (3 - 2 * t);
 function FloatingMockup({ src, alt = '', startRef, endRef }) {
     const elRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const rafRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const el = elRef.current;
-        if (!el) return;
-        // безопасные baseline стили (используем backgroundColor, не shorthand)
-        el.style.backgroundColor = 'transparent';
-        el.style.outline = 'none';
-        el.style.border = 'none';
-        el.style.pointerEvents = 'none';
-        el.style.backfaceVisibility = 'hidden';
-        let startRect = null;
-        let endRect = null;
+        // На сервере ничего не делаем
+        if ("TURBOPACK compile-time truthy", 1) return;
+        "TURBOPACK unreachable";
+        const el = undefined;
+        let startRect;
+        let endRect;
         function updateRects() {
             startRect = startRef.current?.getBoundingClientRect() ?? null;
             endRect = endRef.current?.getBoundingClientRect() ?? null;
         }
         function frame() {
+            // Берём узел заново и выходим, если размонтировался
+            const elNow = elRef.current;
+            if (!elNow) {
+                if (rafRef.current) {
+                    cancelAnimationFrame(rafRef.current);
+                    rafRef.current = null;
+                }
+                return;
+            }
             if (!startRect || !endRect) {
                 updateRects();
                 rafRef.current = requestAnimationFrame(frame);
                 return;
             }
+            const scrollX = window.scrollX || window.pageXOffset;
             const scrollY = window.scrollY || window.pageYOffset;
             const viewportCenterY = scrollY + window.innerHeight / 2;
             const startCenterAbs = {
-                x: (startRect.left + startRect.right) / 2 + (window.scrollX || window.pageXOffset),
-                y: (startRect.top + startRect.bottom) / 2 + (window.scrollY || window.pageYOffset)
+                x: (startRect.left + startRect.right) / 2 + scrollX,
+                y: (startRect.top + startRect.bottom) / 2 + scrollY
             };
             const endCenterAbs = {
-                x: (endRect.left + endRect.right) / 2 + (window.scrollX || window.pageXOffset),
-                y: (endRect.top + endRect.bottom) / 2 + (window.scrollY || window.pageYOffset)
+                x: (endRect.left + endRect.right) / 2 + scrollX,
+                y: (endRect.top + endRect.bottom) / 2 + scrollY
             };
             const startTopAbs = startCenterAbs.y;
-            const endTopAbs = endCenterAbs.y || startTopAbs + 1; // avoid div by zero
-            let tRaw = clamp((viewportCenterY - startTopAbs) / (endTopAbs - startTopAbs || 1), 0, 1);
+            const endTopAbs = endCenterAbs.y || startTopAbs + 1;
+            const tRaw = clamp((viewportCenterY - startTopAbs) / (endTopAbs - startTopAbs || 1), 0, 1);
             const t = ease(tRaw);
-            // guard sizes: если endRect имеет 0 ширину/высоту — используем startRect как fallback
             const startW = startRect.width || 400;
-            const startH = startRect.height || startW * 1.6; // портретный планшет
+            const startH = startRect.height || startW * 1.6;
             const endW = endRect.width || startW;
             const endH = endRect.height || startH;
-            // интерполируем по eased t
             const curW = lerp(startW, endW, t);
             const curH = lerp(startH, endH, t);
             const curX = lerp(startCenterAbs.x, endCenterAbs.x, t);
             const curY = lerp(startCenterAbs.y, endCenterAbs.y, t);
             const left = curX - curW / 2;
             const top = curY - curH / 2;
-            // применяем размеры и позиционирование
-            el.style.width = `${Math.max(48, curW)}px`;
-            el.style.height = `${Math.max(48, curH)}px`;
-            el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
-            // drop-shadow с плавным изменением
+            // Применяем стили к актуальному узлу
+            elNow.style.width = `${Math.max(48, curW)}px`;
+            elNow.style.height = `${Math.max(48, curH)}px`;
+            elNow.style.transform = `translate3d(${left}px, ${top}px, 0)`;
             const shadowLight = 'drop-shadow(0 20px 40px rgba(15,23,42,0.10))';
             const shadowStrong = 'drop-shadow(0 34px 90px rgba(15,23,42,0.12))';
-            el.style.filter = tRaw < 0.6 ? shadowLight : shadowStrong;
+            elNow.style.filter = tRaw < 0.6 ? shadowLight : shadowStrong;
             rafRef.current = requestAnimationFrame(frame);
         }
-        updateRects();
-        rafRef.current = requestAnimationFrame(frame);
         function onScrollResize() {
             updateRects();
         }
-        window.addEventListener('resize', onScrollResize);
-        window.addEventListener('scroll', onScrollResize, {
-            passive: true
-        });
-        const ro = new ResizeObserver(()=>updateRects());
-        if (startRef.current) ro.observe(startRef.current);
-        if (endRef.current) ro.observe(endRef.current);
-        return ()=>{
-            if (rafRef.current) cancelAnimationFrame(rafRef.current);
-            window.removeEventListener('resize', onScrollResize);
-            window.removeEventListener('scroll', onScrollResize);
-            ro.disconnect();
-        };
+        const ro = undefined;
     }, [
         startRef,
         endRef
@@ -5209,8 +5193,8 @@ function FloatingMockup({ src, alt = '', startRef, endRef }) {
         "aria-hidden": true,
         style: {
             position: 'absolute',
-            top: '0',
-            left: '0',
+            top: 0,
+            left: 0,
             pointerEvents: 'none',
             zIndex: 60,
             willChange: 'transform, width, height, filter',
@@ -5220,7 +5204,7 @@ function FloatingMockup({ src, alt = '', startRef, endRef }) {
             style: {
                 width: '100%',
                 height: '100%',
-                borderRadius: '24px',
+                borderRadius: 24,
                 overflow: 'hidden',
                 backgroundColor: 'transparent'
             },
@@ -5236,17 +5220,17 @@ function FloatingMockup({ src, alt = '', startRef, endRef }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FloatingMockup.tsx",
-                lineNumber: 140,
+                lineNumber: 151,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/FloatingMockup.tsx",
-            lineNumber: 131,
+            lineNumber: 142,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/components/FloatingMockup.tsx",
-        lineNumber: 118,
+        lineNumber: 129,
         columnNumber: 5
     }, this);
 }

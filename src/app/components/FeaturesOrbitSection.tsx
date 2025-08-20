@@ -3,21 +3,30 @@
 import React, { useMemo, useState } from 'react';
 import ExportedImage from 'next-image-export-optimizer';
 
+/** Геометрия сцены */
 const STAGE_W = 660;
 const STAGE_H = 660;
 const CX = Math.round(STAGE_W / 2);
 const CY = Math.round(STAGE_H * 0.52);
 
-const RINGS: readonly number[] = [320, 270, 220, 175, 135];
+/** Радиусы колец */
+const RINGS = [320, 270, 220, 175, 135] as const;
 
+/** Градиенты */
 const GRAD_LINE = 'bg-gradient-to-r from-[#0D70DF] to-[#E63637]';
 const GRAD_TEXT = 'text-transparent bg-clip-text bg-gradient-to-r from-[#0D70DF] to-[#E63637]';
 
 const GradientBadge: React.FC<{ title: string }> = ({ title }) => (
-  <span className={`text-[12px] font-semibold px-3 py-[6px] rounded-[8px] whitespace-nowrap text-white ${GRAD_LINE}`}>
+  <span
+    className={`text-[12px] font-semibold px-3 py-[6px] rounded-[8px] whitespace-nowrap text-white ${GRAD_LINE}`}
+  >
     {title}
   </span>
 );
+
+/** Один «поезд» — только палочка + бейдж. Палочка идёт справа от точки по дуге (контр-вращение),
+ * саму точку мы не рисуем (по просьбе убрать кружочки). */
+type Train = { title: string; r: number; start: number; period: number; delay?: number };
 
 const OrbitTrain: React.FC<{
   r: number;
@@ -35,6 +44,7 @@ const OrbitTrain: React.FC<{
       style={{ left: CX, top: CY, transform: 'translate(-50%, -50%)' }}
       aria-hidden
     >
+      {/* Ведущее вращение */}
       <div
         style={{
           transformOrigin: '0 0',
@@ -43,8 +53,11 @@ const OrbitTrain: React.FC<{
           willChange: 'transform',
         }}
       >
+        {/* Вынос на радиус */}
         <div style={{ transform: `translateX(${r}px)` }}>
+          {/* Нулевой контейнер */}
           <div style={{ position: 'relative', width: 0, height: 0 }}>
+            {/* Контр-вращение — держит палочку+бейдж горизонтально и справа от точки */}
             <div
               style={{
                 position: 'absolute',
@@ -59,7 +72,9 @@ const OrbitTrain: React.FC<{
                 willChange: 'transform',
               }}
             >
+              {/* небольшой отступ от виртуальной точки */}
               <span style={{ width: GAP, height: 1 }} />
+              {/* палочка */}
               <span
                 className={GRAD_LINE}
                 style={{
@@ -69,6 +84,7 @@ const OrbitTrain: React.FC<{
                   flex: '0 0 auto',
                 }}
               />
+              {/* бейдж */}
               <span style={{ marginLeft: 6, display: 'inline-block' }}>
                 <GradientBadge title={title} />
               </span>
@@ -80,11 +96,18 @@ const OrbitTrain: React.FC<{
   );
 };
 
+/** Правый столбец */
 type CatKey = 'desktop' | 'group' | 'integration' | 'custom';
+type Category = {
+  id: CatKey;
+  label: string;
+  mock2: string;
+  paragraphs: string[];
+};
 
-const CATEGORIES = [
+const CATEGORIES: Category[] = [
   {
-    id: 'desktop' as CatKey,
+    id: 'desktop',
     label: 'Наши лагеря Desktop',
     mock2: '/images/desktop-front.svg',
     paragraphs: [
@@ -94,7 +117,7 @@ const CATEGORIES = [
     ],
   },
   {
-    id: 'group' as CatKey,
+    id: 'group',
     label: 'Групповое бронирование',
     mock2: '/images/orbit/group-front.png',
     paragraphs: [
@@ -104,7 +127,7 @@ const CATEGORIES = [
     ],
   },
   {
-    id: 'integration' as CatKey,
+    id: 'integration',
     label: 'Интеграция с 1С бухгалтерия',
     mock2: '/images/orbit/1c-front.png',
     paragraphs: [
@@ -114,7 +137,7 @@ const CATEGORIES = [
     ],
   },
   {
-    id: 'custom' as CatKey,
+    id: 'custom',
     label: 'Индивидуальный функционал',
     mock2: '/images/orbit/custom-front.png',
     paragraphs: [
@@ -125,16 +148,16 @@ const CATEGORIES = [
   },
 ];
 
-export default function FeaturesOrbitExact(): JSX.Element {
+export default function FeaturesOrbitExact() {
   const [active, setActive] = useState<CatKey>('desktop');
-  const cat = CATEGORIES.find(c => c.id === active)!;
+  const cat = CATEGORIES.find((c) => c.id === active)!;
 
-  // оставляем твои стартовые углы/периоды — добавил только задержку для «стаггера»
-  const trains = useMemo(
+  // стартовые углы/периоды + лёгкий «stagger» через delay
+  const trains: Train[] = useMemo(
     () => [
       { title: 'СИСТЕМА АНАЛИТИКИ', r: RINGS[0], start: 190, period: 30, delay: 0.0 },
       { title: 'ПОМОЩНИК ВОЖАТОГО', r: RINGS[1], start: 230, period: 26, delay: 0.2 },
-      { title: 'СОВРЕМЕННЫЙ ДОКУМЕНТООБОРОТОР', r: RINGS[2], start: 310, period: 22, delay: 0.35 },
+      { title: 'СОВРЕМЕННЫЙ ДОКУМЕНТООБОРОТ', r: RINGS[2], start: 310, period: 22, delay: 0.35 },
       { title: 'СИСТЕМА ПРОДАЖ', r: RINGS[3], start: 60, period: 20, delay: 0.5 },
       { title: 'ЛИЧНЫЙ КАБИНЕТ', r: RINGS[4], start: 140, period: 18, delay: 0.65 },
     ],
@@ -143,6 +166,7 @@ export default function FeaturesOrbitExact(): JSX.Element {
 
   return (
     <section className="relative py-16 lg:py-24 overflow-hidden">
+      {/* keyframes локально к компоненту */}
       <style>{`
         @keyframes orbitCW   { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes uprightCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
@@ -167,58 +191,54 @@ export default function FeaturesOrbitExact(): JSX.Element {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10 items-start">
-          {/* сцена (адаптация: скейлим контейнер на узких экранах) */}
+          {/* сцена — адаптив: мягко скейлим на узких экранах */}
           <div className="relative">
             <div
               className="
-                relative mx-auto
-                transform-gpu
-                scale-[0.82] xs:scale-[0.9] sm:scale-[0.95] md:scale-100
+                relative mx-auto transform-gpu
+                scale-[0.9] sm:scale-[0.95] md:scale-100
                 origin-center
               "
               style={{ width: STAGE_W, height: STAGE_H }}
             >
-              {active === 'desktop' && (
-                <>
-                  <svg
-                    viewBox={`0 0 ${STAGE_W} ${STAGE_H}`}
-                    className="absolute inset-0 w-full h-full pointer-events-none"
-                  >
-                    <defs>
-                      <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#0D70DF" />
-                        <stop offset="100%" stopColor="#E63637" />
-                      </linearGradient>
-                    </defs>
-                    {RINGS.map((r, i) => (
-                      <circle
-                        key={r}
-                        cx={CX}
-                        cy={CY}
-                        r={r}
-                        fill="none"
-                        stroke="url(#ringGrad)"
-                        strokeWidth={3 - i * 0.2}
-                        strokeDasharray={i < 2 ? '12 16' : i < 4 ? '10 14' : '8 12'}
-                        strokeOpacity={0.22 - i * 0.02}
-                      />
-                    ))}
-                  </svg>
+              {/* фоновые кольца + «поезда» */}
+              <svg
+                viewBox={`0 0 ${STAGE_W} ${STAGE_H}`}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+              >
+                <defs>
+                  <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stopColor="#0D70DF" />
+                    <stop offset="100%" stopColor="#E63637" />
+                  </linearGradient>
+                </defs>
+                {RINGS.map((r, i) => (
+                  <circle
+                    key={r}
+                    cx={CX}
+                    cy={CY}
+                    r={r}
+                    fill="none"
+                    stroke="url(#ringGrad)"
+                    strokeWidth={3 - i * 0.2}
+                    strokeDasharray={i < 2 ? '12 16' : i < 4 ? '10 14' : '8 12'}
+                    strokeOpacity={0.22 - i * 0.02}
+                  />
+                ))}
+              </svg>
 
-                  {trains.map((t, i) => (
-                    <OrbitTrain
-                      key={i}
-                      r={t.r}
-                      startDeg={(t as any).start}
-                      period={(t as any).period}
-                      title={t.title}
-                      delay={(t as any).delay}
-                    />
-                  ))}
-                </>
-              )}
+              {trains.map((t, i) => (
+                <OrbitTrain
+                  key={i}
+                  r={t.r}
+                  startDeg={t.start}
+                  period={t.period}
+                  title={t.title}
+                  delay={t.delay}
+                />
+              ))}
 
-              {/* один мокап */}
+              {/* один мокап спереди */}
               <div
                 className="absolute"
                 style={{ left: CX, top: CY + 10, transform: 'translate(-50%, -50%)' }}
@@ -228,21 +248,20 @@ export default function FeaturesOrbitExact(): JSX.Element {
                   alt="Front tablet"
                   width={900}
                   height={900}
-                  className="w-[480px] sm:w-[520px] lg:w-[560px] h-auto drop-shadow-2xl"
+                  className="w-[500px] sm:w-[540px] lg:w-[580px] h-auto drop-shadow-2xl"
                 />
               </div>
             </div>
           </div>
 
-          {/* правая колонка: с вертикальной градиент-полоской слева и адаптацией */}
+          {/* правая колонка с вертикальной градиент-полоской */}
           <div className="relative mt-6 lg:mt-0 animate-[fadeUp_0.8s_ease-out]">
             <div className="relative pl-6 sm:pl-8 lg:pl-12">
-              {/* вертикальная полоса как на скрине */}
+              {/* вертикальная полоска слева как на скрине */}
               <span
                 className={`absolute left-0 top-1 bottom-1 w-[3px] rounded-full ${GRAD_LINE}`}
                 aria-hidden
               />
-
               <h3 className="text-[22px] sm:text-[24px] md:text-[26px] font-extrabold text-[#2D3B6F] mb-2">
                 {cat.label}
               </h3>
@@ -252,7 +271,7 @@ export default function FeaturesOrbitExact(): JSX.Element {
                   <p
                     key={i}
                     className="leading-snug opacity-0 translate-y-2 animate-[fadeUp_0.5s_ease-out_forwards]"
-                    style={{ animationDelay: `${0.1 * i + 0.15}s` as any }}
+                    style={{ animationDelay: `${0.1 * i + 0.15}s` as React.CSSProperties['animationDelay'] }}
                   >
                     {p}
                   </p>
@@ -278,7 +297,7 @@ export default function FeaturesOrbitExact(): JSX.Element {
                       ${active === c.id ? GRAD_TEXT : 'text-[#2D3B6F] hover:text-[#0D70DF]'}
                       opacity-0 translate-y-2 animate-[fadeUp_0.5s_ease-out_forwards]
                     `}
-                    style={{ animationDelay: `${0.08 * i + 0.25}s` as any }}
+                    style={{ animationDelay: `${0.08 * i + 0.25}s` as React.CSSProperties['animationDelay'] }}
                   >
                     {c.label}
                   </button>
