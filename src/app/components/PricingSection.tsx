@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import ExportedImage from 'next-image-export-optimizer';
 import { useModal } from '../contexts/ModalContext';
 
 const PricingSection = () => {
   const { openModal } = useModal();
-  const [activeTab, setActiveTab] = useState('percent');
   
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
