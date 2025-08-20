@@ -1,24 +1,25 @@
 import type { NextConfig } from "next";
 
-const repo = "OurCamps"; // имя репозитория на GitHub
+const repo = "OurCamps"; // на 100% совпадает с именем репозитория
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  eslint: { ignoreDuringBuilds: true },
   output: "export",
   distDir: "out",
+  trailingSlash: true, // рекомендуемо для GH Pages
 
   basePath: process.env.NODE_ENV === "production" ? `/${repo}` : "",
   assetPrefix: process.env.NODE_ENV === "production" ? `/${repo}/` : "",
 
   images: {
     loader: "custom",
+    unoptimized: true, // уместно на GH Pages
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    unoptimized: true, // GitHub Pages не поддерживает image optimizer
   },
+
   transpilePackages: ["next-image-export-optimizer"],
+
   env: {
     nextImageExportOptimizer_imageFolderPath: "public/images",
     nextImageExportOptimizer_exportFolderPath: "out",
