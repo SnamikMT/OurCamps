@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@theme{
+  /* Цвета */
+  --color-primary-white: #F9F7F7;
+  --color-primary-black: #4A4A4A;
+  --color-primary-blue: #0D70DF;
+  --color-primary-red: #E63637;
+  --color-primary-gray: #F4F5F7;
+  
+  /* Шрифты */
+  --font-mont: "Montserrat", sans-serif;
+  --font-bounded: "Bounded", sans-serif;
+  
+  /* Тени */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 15px 50px rgba(0, 0, 0, 0.1);
+  --shadow-button: 0 10px 25px -5px rgba(13, 112, 223, 0.3);
+  --shadow-button-hover: 0 20px 30px -10px rgba(13, 112, 223, 0.4);
+}
+
+/* Импорт шрифта Bounded */
+@font-face {
+  font-family: 'Bounded';
+  src: url('/fonts/Bounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bounded';
+  src: url('/fonts/Bounded-Black.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #0D70DF 0%, #E63637 100%);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #0D70DF 0%, #E63637 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.svg-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.06;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(135deg, #0D70DF 0%, #E63637 100%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-animated {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.btn-animated:hover::before {
+    left: 100%;
+}
+
+/* Стили для анимации модального окна */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* Стили для кнопки бургер-меню */
+.hamburger {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #111111;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.hamburger span:nth-child(1) {
+    top: 0px;
+    transform-origin: left center;
+    transition-delay: 0s;
+}
+
+.hamburger span:nth-child(2), .hamburger span:nth-child(3) {
+    top: 8px;
+    transform-origin: center center;
+    transition-delay: 0.1s;
+}
+
+.hamburger span:nth-child(4) {
+    top: 16px;
+    transform-origin: left center;
+    transition-delay: 0.2s;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateX(3px) rotate(45deg);
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.hamburger.open span:nth-child(2) {
+    transform: rotate(45deg);
+    transition-delay: 0.15s;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    transition-delay: 0.15s;
+}
+
+.hamburger.open span:nth-child(4) {
+    transform: translateX(3px) rotate(-45deg);
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+/* Стили для переходов между состояниями модального окна */
+.modal-form.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.modal-success.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* Стили для мобильной навигации */
+.mobile-nav-link {
+    position: relative;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.mobile-nav-link:hover {
+    color: #0D70DF;
+}
+
+/* Стили для маркированного списка на странице политики конфиденциальности */
+.policy-list li {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.policy-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0D70DF 0%, #E63637 100%);
+}
+
+/* Скрытие полосы прокрутки */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* для Internet Explorer и Edge */
+  scrollbar-width: none;     /* для Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;            /* для Chrome, Safari и Opera */
+}
+
+/* Блокировка скролла без перемещения страницы */
+body.overflow-hidden {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  -webkit-overflow-scrolling: auto;
+  overscroll-behavior: none;
+  touch-action: none;
+}
