@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import type { JSX } from 'react'; // <-- ВАЖНО
 import ExportedImage from 'next-image-export-optimizer';
 
 type TabKey = 'camp' | 'parent' | 'child' | 'gov';

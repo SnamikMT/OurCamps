@@ -6,7 +6,7 @@ import ExportedImage from 'next-image-export-optimizer';
 import { useModal } from '../contexts/ModalContext';
 
 type Props = {
-  /** Плейсхолдер для внешнего FloatingMockup (как у тебя) */
+  /** Плейсхолдер для внешнего FloatingMockup */
   mockRef: React.RefObject<HTMLDivElement | null>;
 };
 
@@ -19,12 +19,12 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
   const backTabletRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const handleContactClick = (e: React.MouseEvent) => {
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     openModal();
   };
 
-  // ——— АНИМАЦИЯ ПОЯВЛЕНИЯ (IntersectionObserver)
+  // Анимация появления блоков
   useEffect(() => {
     const root = sectionRef.current;
     if (!root) return;
@@ -51,7 +51,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
     return () => io.disconnect();
   }, []);
 
-  // ——— ДВИЖЕНИЕ ЗАДНЕГО МОКАПА ПРИ СКРОЛЛЕ (вправо при прокрутке вниз)
+  // Задний планшет уезжает вправо при скролле
   useEffect(() => {
     const sec = sectionRef.current;
     const el = backTabletRef.current;
@@ -66,26 +66,21 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const rect = sec.getBoundingClientRect();
-        // Прогресс прокрутки секции: 0 у верхней кромки вьюпорта, 1 — когда секция ушла на высоту окна
         const h = Math.max(rect.height, 1);
         const viewport = window.innerHeight || 1;
-        const span = viewport + h; // диапазон, пока секция «в зоне внимания»
-        const progress = clamp(1 - (rect.bottom / span), 0, 1);
+        const span = viewport + h;
+        const progress = clamp(1 - rect.bottom / span, 0, 1);
 
-        // Смещение вправо: чуть-чуть на планшетах, активнее на десктопе
         const vw = window.innerWidth;
-        const maxShift =
-          vw >= 1280 ? 140 : vw >= 1024 ? 100 : vw >= 768 ? 70 : 30; // px
+        const maxShift = vw >= 1280 ? 140 : vw >= 1024 ? 100 : vw >= 768 ? 70 : 30;
 
-        // ease-out для приятности
         const eased = 1 - Math.pow(1 - progress, 2);
         const shiftX = eased * maxShift;
 
-        el.style.transform = `translateX(${shiftX}px) rotate(6deg)`; // сохраняем исходный наклон
+        el.style.transform = `translateX(${shiftX}px) rotate(6deg)`;
       });
     };
 
-    // первичный вызов
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
@@ -101,7 +96,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
       ref={sectionRef}
       className="relative overflow-hidden pt-12 sm:pt-16 md:pt-20 lg:pt-12 pb-16 sm:pb-24 md:pb-32 lg:pb-40"
     >
-      {/* локальные стили (reveal) */}
+      {/* Локальные стили для reveal-анимации */}
       <style>{`
         @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
         [data-reveal] { opacity: 0; transform: translateY(14px); will-change: opacity, transform; }
@@ -111,7 +106,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
         [data-reveal].delay-3.revealed { animation-delay: .24s; }
       `}</style>
 
-      {/* Фон справа — прилегает к правому краю */}
+      {/* Фон справа */}
       <div ref={bgRef} className="absolute top-0 right-0 h-full -z-20 pointer-events-none">
         <ExportedImage
           src="/images/hero-bg.svg"
@@ -180,12 +175,12 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
               />
             </div>
 
-            {/* Плейсхолдер FloatingMockup */}
+            {/* Плейсхолдер для FloatingMockup */}
             <div
-              ref={mockRef as any}
+              ref={mockRef}
               className="mx-auto rounded-3xl pointer-events-none"
               style={{
-                width: 480, // стартовые — поменьше для лучшего соответствия макету
+                width: 480,
                 height: 600,
                 maxWidth: '100%',
                 visibility: 'hidden',
