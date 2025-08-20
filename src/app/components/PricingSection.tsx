@@ -2,6 +2,7 @@
 
 import ExportedImage from 'next-image-export-optimizer';
 import { useModal } from '../contexts/ModalContext';
+import { prefix } from '@/lib/prefix';
 
 const PricingSection = () => {
   const { openModal } = useModal();
@@ -40,7 +41,7 @@ const PricingSection = () => {
               <div className="flex justify-between items-center mb-6">
                 <div className="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center shadow-lg">
                   <ExportedImage
-                    src="/images/rubl.svg"  // своя иконка
+                    src={`${prefix}/images/rubl.svg`}  // своя иконка
                     alt="Иконка тарифа"
                     width={32}
                     height={32}

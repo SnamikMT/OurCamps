@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import ExportedImage from 'next-image-export-optimizer';
 import { useModal } from '../contexts/ModalContext';
+import { prefix } from '@/lib/prefix';
 
 type Props = {
   /** Плейсхолдер для внешнего FloatingMockup */
@@ -109,7 +110,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
       {/* Фон справа */}
       <div ref={bgRef} className="absolute top-0 right-0 h-full -z-20 pointer-events-none">
         <ExportedImage
-          src="/images/hero-bg.svg"
+          src={`${prefix}/images/hero-bg.svg`}
           alt="Декоративный фон"
           width={1600}
           height={1200}
@@ -166,7 +167,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
               className="absolute top-6 right-[-56px] w-[62%] md:w-[66%] lg:w-[68%] -z-10 rotate-[6deg] will-change-transform hidden sm:block"
             >
               <ExportedImage
-                src="/images/hero-tablet-secondary.png"
+                src={`${prefix}/images/hero-tablet-secondary.png`}
                 alt="Дополнительный планшет"
                 width={700}
                 height={700}
@@ -191,7 +192,7 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
             <noscript>
               <div className="mt-6">
                 <img
-                  src="/images/hero-tablet.svg"
+                  src={`${prefix}/images/hero-tablet.svg`}
                   alt="Интерфейс системы (статичный мокап)"
                   width={420}
                   height={720}

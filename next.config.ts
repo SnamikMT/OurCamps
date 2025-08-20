@@ -1,26 +1,29 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
-const repo = "OurCamps"; // на 100% совпадает с именем репозитория
+const repo = "OurCamps";
+const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   eslint: { ignoreDuringBuilds: true },
   output: "export",
   distDir: "out",
-  trailingSlash: true, // рекомендуемо для GH Pages
 
-  basePath: process.env.NODE_ENV === "production" ? `/${repo}` : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? `/${repo}/` : "",
+  // у тебя уже есть:
+  basePath: isProd ? `/${repo}` : "",
+  assetPrefix: isProd ? `/${repo}/` : "",
 
   images: {
     loader: "custom",
-    unoptimized: true, // уместно на GH Pages
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    unoptimized: true,
   },
-
   transpilePackages: ["next-image-export-optimizer"],
-
   env: {
+    // --- добавь это:
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repo}` : "",
+    // --- и оставь твои оптимайзеры как были
     nextImageExportOptimizer_imageFolderPath: "public/images",
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_quality: "75",

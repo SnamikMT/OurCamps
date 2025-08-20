@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ExportedImage from 'next-image-export-optimizer';
 import { useModal } from '../contexts/ModalContext';
 import { usePathname } from 'next/navigation';
+import { prefix } from '@/lib/prefix';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,7 +71,7 @@ const Header = () => {
           <div className="flex justify-between items-center">
             <div className="w-full max-w-[160px]">
               <Link href="/">
-                <ExportedImage src="/images/logos.svg" alt="Наши лагеря - Система продаж для детских лагерей" width={160} height={50} className="w-full h-auto" priority />
+                <ExportedImage src={`${prefix}/images/logos.svg`} alt="Наши лагеря - Система продаж для детских лагерей" width={160} height={50} className="w-full h-auto" priority />
               </Link>
             </div>
             

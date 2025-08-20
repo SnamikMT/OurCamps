@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import ExportedImage from 'next-image-export-optimizer';
 import { usePathname } from 'next/navigation';
+import { prefix } from '@/lib/prefix';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -26,7 +27,7 @@ const Footer = () => {
               <div>
                 <div className="w-40 mb-6">
                   <ExportedImage 
-                    src="/images/logo.svg" 
+                    src={`${prefix}/images/logo.svg`}
                     alt="Наши лагеря - Система продаж для детских лагерей" 
                     width={160} 
                     height={50} 
@@ -107,7 +108,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-6 md:mb-0">
               <ExportedImage 
-                src="/images/year_white_horizontal.svg" 
+                src={`${prefix}/images/year_white_horizontal.svg`}
                 alt="2025 - Год детского отдыха в системе образования России" 
                 width={289} 
                 height={64} 
