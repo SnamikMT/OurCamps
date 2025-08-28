@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @theme{
   /* Цвета */
   --color-primary-white: #F9F7F7;
@@ -249,4 +253,63 @@ body.overflow-hidden {
   -webkit-overflow-scrolling: auto;
   overscroll-behavior: none;
   touch-action: none;
+}
+
+/* Адаптивные улучшения для меню */
+@media (max-width: 480px) {
+  .hamburger {
+    width: 20px;
+    height: 16px;
+  }
+  
+  .hamburger span {
+    height: 1.5px;
+  }
+  
+  .hamburger span:nth-child(1) {
+    top: 0px;
+  }
+  
+  .hamburger span:nth-child(2), 
+  .hamburger span:nth-child(3) {
+    top: 7px;
+  }
+  
+  .hamburger span:nth-child(4) {
+    top: 14px;
+  }
+}
+
+/* Улучшенная анимация для мобильного меню */
+@media (max-width: 640px) {
+  .mobile-menu-panel {
+    width: 85%;
+    max-width: 320px;
+  }
+}
+
+/* Адаптивные отступы */
+@media (max-width: 380px) {
+  .header-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Улучшенное поведение при скролле */
+.sticky-header {
+  transition: all 0.3s ease;
+}
+
+/* Улучшенная доступность для скринридеров */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

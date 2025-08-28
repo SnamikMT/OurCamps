@@ -24,8 +24,8 @@ const ServicesSection = () => {
         {/* Заголовок */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-bounded text-3xl md:text-4xl font-bold mb-3">
-            КОМПЛЕКСНОЕ РЕШЕНИЕ <br />
-            ДЛЯ ЛЮБОГО ЛАГЕРЯ
+            Комплексное решение <br />
+            для любого лагеря
           </h2>
           <p className="text-gray-600 text-base md:text-lg">
             Полный спектр услуг для детских лагерей

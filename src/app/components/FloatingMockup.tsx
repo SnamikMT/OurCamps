@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ExportedImage from 'next-image-export-optimizer';
 
 type Props = {
@@ -17,6 +17,19 @@ const ease = (t: number) => t * t * (3 - 2 * t);
 export default function FloatingMockup({ src, alt = '', startRef, endRef }: Props) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Проверяем, мобильное ли устройство при монтировании
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // На сервере ничего не делаем
@@ -32,6 +45,34 @@ export default function FloatingMockup({ src, alt = '', startRef, endRef }: Prop
     el.style.pointerEvents = 'none';
     el.style.backfaceVisibility = 'hidden';
 
+    // Если мобильное устройство - статичное позиционирование
+    if (isMobile) {
+      const startRect = startRef.current?.getBoundingClientRect();
+      if (startRect) {
+        const scrollX = window.scrollX || window.pageXOffset;
+        const scrollY = window.scrollY || window.pageYOffset;
+        
+        const startCenterAbs = {
+          x: (startRect.left + startRect.right) / 2 + scrollX,
+          y: (startRect.top + startRect.bottom) / 2 + scrollY,
+        };
+
+        const startW = Math.min(300, startRect.width || 300);
+        const startH = startW * 1.6;
+
+        const left = startCenterAbs.x - startW / 2;
+        const top = startCenterAbs.y - startH / 2;
+
+        el.style.width = `${startW}px`;
+        el.style.height = `${startH}px`;
+        el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+        el.style.filter = 'drop-shadow(0 20px 40px rgba(15,23,42,0.10))';
+        el.style.position = 'absolute';
+      }
+      return; // Завершаем выполнение для мобильных
+    }
+
+    // Оригинальная логика для десктопов
     let startRect: DOMRect | null = null;
     let endRect: DOMRect | null = null;
 
@@ -93,6 +134,7 @@ export default function FloatingMockup({ src, alt = '', startRef, endRef }: Prop
       elNow.style.width = `${Math.max(48, curW)}px`;
       elNow.style.height = `${Math.max(48, curH)}px`;
       elNow.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+      elNow.style.position = 'absolute';
 
       const shadowLight = 'drop-shadow(0 20px 40px rgba(15,23,42,0.10))';
       const shadowStrong = 'drop-shadow(0 34px 90px rgba(15,23,42,0.12))';
@@ -105,13 +147,23 @@ export default function FloatingMockup({ src, alt = '', startRef, endRef }: Prop
     rafRef.current = requestAnimationFrame(frame);
 
     function onScrollResize() {
-      updateRects();
+      // На мобильных не обновляем при скролле
+      if (!isMobile) {
+        updateRects();
+      }
     }
 
     window.addEventListener('resize', onScrollResize);
-    window.addEventListener('scroll', onScrollResize, { passive: true });
+    if (!isMobile) {
+      window.addEventListener('scroll', onScrollResize, { passive: true });
+    }
 
-    const ro = 'ResizeObserver' in window ? new ResizeObserver(() => updateRects()) : null;
+    const ro = 'ResizeObserver' in window ? new ResizeObserver(() => {
+      if (!isMobile) {
+        updateRects();
+      }
+    }) : null;
+    
     if (ro) {
       if (startRef.current) ro.observe(startRef.current);
       if (endRef.current) ro.observe(endRef.current);
@@ -123,7 +175,7 @@ export default function FloatingMockup({ src, alt = '', startRef, endRef }: Prop
       window.removeEventListener('scroll', onScrollResize);
       ro?.disconnect();
     };
-  }, [startRef, endRef]);
+  }, [startRef, endRef, isMobile]); // Добавляем isMobile в зависимости
 
   return (
     <div
@@ -134,7 +186,7 @@ export default function FloatingMockup({ src, alt = '', startRef, endRef }: Prop
         top: 0,
         left: 0,
         pointerEvents: 'none',
-        zIndex: 60,
+        zIndex: 10,
         willChange: 'transform, width, height, filter',
         transition: 'filter 160ms linear',
       }}

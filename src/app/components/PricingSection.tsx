@@ -29,7 +29,7 @@ const PricingSection = () => {
         </div>
 
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="font-bounded text-3xl sm:text-4xl font-bold mb-4">СТОИМОСТЬ УСЛУГ ПЛАТФОРМЫ</h2>
+          <h2 className="font-bounded text-3xl sm:text-4xl font-bold mb-4">Стоимость услуг платформы</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Мы предлагаем простую и понятную модель ценообразования, которая помогает вашему бизнесу расти
           </p>
