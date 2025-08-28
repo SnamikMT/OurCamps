@@ -10,6 +10,7 @@ import FeaturesOrbitSection from './components/FeaturesOrbitSection';
 import ServicesSection from './components/ServicesSection';
 import TabsFeatureSection from './components/TabsFeatureSection';
 import CtaPromo from './components/CtaPromo';
+import PartnersSection from "./components/PartnersSection";
 import PricingSection from './components/PricingSection';
 import ContactSection from './components/ContactSection';
 import FloatingMockup from './components/FloatingMockup';
@@ -65,6 +66,7 @@ export default function Home() {
         <ServicesSection />
         <TabsFeatureSection />
         <PricingSection />
+        <PartnersSection />
         <ContactSection />
       </main>
 

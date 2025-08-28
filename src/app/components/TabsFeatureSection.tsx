@@ -34,7 +34,7 @@ const TABS: {
       'Уведомления о статусе заявки и смене',
       'Поддержка нескольких детей в одном аккаунте',
     ],
-    image: '/images/tabs/for-parent.png',
+    image: '/images/for-parent.png',
     alt: 'Интерфейс личного кабинета для родителя',
   },
   {
@@ -46,7 +46,7 @@ const TABS: {
       'Безопасность: медицинские карточки и список аллергенов',
       'Интерактивная карта отрядов и расписание',
     ],
-    image: '/images/tabs/for-child.png',
+    image: '/images/for-child.png',
     alt: 'Интерфейс информации для ребёнка',
   },
   {
@@ -58,7 +58,7 @@ const TABS: {
       'Контроль безопасности и мед. документации',
       'Настраиваемые права доступа и аудит',
     ],
-    image: '/images/tabs/for-gov.png',
+    image: '/images/for-gov.png',
     alt: 'Интерфейс для контролирующих органов',
   },
 ];
@@ -108,7 +108,7 @@ export default function TabsFeatureSection(): JSX.Element {
             <span>Эффективность и комфорт для каждого</span>
           </div>
 
-          <h2 className="font-bounded text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+          <h2 className="font-bounded text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Инновационная платформа
             <span className="block">с передовыми решениями для всех участников</span>
           </h2>

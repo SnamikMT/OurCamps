@@ -23,7 +23,7 @@ const ServicesSection = () => {
 
         {/* Заголовок */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-bounded text-3xl md:text-4xl font-bold mb-3">
+          <h2 className="font-bounded text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mb-3">
             Комплексное решение <br />
             для любого лагеря
           </h2>
@@ -83,7 +83,7 @@ const ServicesSection = () => {
                   <div className="w-6 h-6 gradient-bg rounded-full flex items-center justify-center text-white mr-3 mt-0.5">
                     <i className="fa-solid fa-check text-xs"></i>
                   </div>
-                  <div>
+                  <div className="w-[85%]">
                     <h4 className="font-semibold">{item.title}</h4>
                     <p className="text-gray-600 text-sm">{item.desc}</p>
                   </div>
@@ -144,7 +144,7 @@ const ServicesSection = () => {
                   <div className="w-6 h-6 gradient-bg rounded-full flex items-center justify-center text-white mr-3 mt-0.5">
                     <i className="fa-solid fa-check text-xs"></i>
                   </div>
-                  <div>
+                  <div className="w-[85%]">
                     <h4 className="font-semibold">{item.title}</h4>
                     <p className="text-gray-600 text-sm">{item.desc}</p>
                   </div>

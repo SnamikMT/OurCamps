@@ -1,4 +1,4 @@
-'use client';
+'sue client';
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -195,6 +195,18 @@ const HeroSection: React.FC<Props> = ({ mockRef }) => {
         
         {/* Светлый градиентный overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/50 to-transparent"></div>
+      </div>
+
+      {/* Абсолютное изображение в нижнем левом углу */}
+      <div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 lg:left-12 lg:bottom-12 z-10">
+        <ExportedImage
+          src={`${prefix}/images/voln.svg`} // Замените на путь к вашему изображению
+          alt="Декоративный элемент"
+          width={40} // Настройте размеры под ваше изображение
+          height={40}
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-16 lg:h-28 object-contain drop-shadow-lg"
+          priority
+        />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16">

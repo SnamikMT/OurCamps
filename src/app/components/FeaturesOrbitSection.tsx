@@ -284,8 +284,8 @@ export default function FeaturesOrbitExact() {
           </div>
 
           {/* Правая колонка - смещена правее */}
-          <div className="relative mt-6 lg:mt-0 animate-[slideInRight_1s_ease-out_0.5s]">
-            <div className="relative pl-8 lg:pl-16">
+          <div className="relative bg-[#f9f7f7] mt-6 lg:mt-0 animate-[slideInRight_1s_ease-out_0.5s]">
+            <div className="relative pl-8 lg:pl-8">
               <span className={`absolute left-0 top-1 bottom-1 w-[3px] rounded-full ${GRAD_LINE}`} aria-hidden />
               <h3 className="text-2xl font-extrabold text-[#2D3B6F] mb-4">
                 {cat.label}
@@ -310,7 +310,7 @@ export default function FeaturesOrbitExact() {
                 </a>
               </div>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-20 space-y-4">
                 {CATEGORIES.map((c, index) => (
                   <button
                     key={c.id}
